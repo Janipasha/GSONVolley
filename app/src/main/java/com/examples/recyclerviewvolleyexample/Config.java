@@ -6,7 +6,7 @@ package com.examples.recyclerviewvolleyexample;
 
 public class Config {
     //URL of my API
-    public static final String DATA_URL = "https://api.myjson.com/bins/pq3u7";
+    public static final String DATA_URL = "https://api.myjson.com/bins/1dm63v";
 
     //Tags for my JSON
     public static final String TAG_IMAGE_URL = "image";

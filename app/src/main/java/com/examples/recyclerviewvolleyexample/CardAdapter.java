@@ -5,10 +5,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -18,7 +20,7 @@ import java.util.List;
 
 public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
 
-    private ImageLoader imageLoader;
+//    private ImageLoader imageLoader;
     private Context context;
 
     //List of superHeroes
@@ -44,10 +46,12 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
 
         SuperHeroes superHero =  superHeroes.get(position);
 
-        imageLoader = CustomVolleyRequest.getInstance(context).getImageLoader();
-        imageLoader.get(superHero.getImageUrl(), ImageLoader.getImageListener(holder.imageView, R.mipmap.ic_launcher, android.R.drawable.ic_dialog_alert));
+        //imageLoader = CustomVolleyRequest.getInstance(context).getImageLoader();
+        //imageLoader.get(superHero.getImageUrl(), ImageLoader.getImageListener(holder.imageView, R.mipmap.ic_launcher, android.R.drawable.ic_dialog_alert));
 
-        holder.imageView.setImageUrl(superHero.getImageUrl(), imageLoader);
+
+        Picasso.with(context).load(superHero.getImageUrl()).resize(400,400).into(holder.imageView);
+       // holder.imageView.setImageUrl(superHero.getImageUrl(), imageLoader);
         holder.textViewName.setText(superHero.getName());
         holder.textViewRank.setText(String.valueOf(superHero.getRank()));
         holder.textViewRealName.setText(superHero.getRealName());
@@ -69,7 +73,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
     }
 
     class ViewHolder extends RecyclerView.ViewHolder{
-        public NetworkImageView imageView;
+        public ImageView imageView;
         public TextView textViewName;
         public TextView textViewRank;
         public TextView textViewRealName;
@@ -79,7 +83,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
 
         public ViewHolder(View itemView) {
             super(itemView);
-            imageView = (NetworkImageView) itemView.findViewById(R.id.imageViewHero);
+            imageView = (ImageView) itemView.findViewById(R.id.imageViewHero);
             textViewName = (TextView) itemView.findViewById(R.id.textViewName);
             textViewRank= (TextView) itemView.findViewById(R.id.textViewRank);
             textViewRealName= (TextView) itemView.findViewById(R.id.textViewRealName);
